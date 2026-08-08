@@ -1,5 +1,7 @@
 package com.quiz.management.backend.controller;
 
+import com.quiz.management.backend.dto.LoginRequest;
+import com.quiz.management.backend.dto.LoginResponse;
 import com.quiz.management.backend.dto.RegisterRequest;
 import com.quiz.management.backend.dto.RegisterResponse;
 import com.quiz.management.backend.service.AuthService;
@@ -25,5 +27,10 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        LoginResponse response = authService.login(request);
+        return ResponseEntity.ok(response);
+    }
 
 }
